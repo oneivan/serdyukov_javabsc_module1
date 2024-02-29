@@ -1,16 +1,15 @@
 package sia.javabsc;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         halfSumArr(new int[] {3,2,1,4,3,4 } );
-        chkArrPoit( new int[] {1,1,1,3});
-        chkArrPoit( new int[] {1,1,1,1,1,5});
-        chkArrPoit( new int[] {1,1,1,1,1,6});
-        chkArrPoit( new int[] {5,3,4,-2});
+        chkArrPoint( new int[] {1,1,1,3});
+        chkArrPoint( new int[] {1,1,1,1,1,5});
+        chkArrPoint( new int[] {1,1,1,1,1,6});
+        chkArrPoint( new int[] {5,3,4,-2});
     }
 
     /*
@@ -27,7 +26,7 @@ public class Main {
 - chkArrPoit
 
     */
-    public static void chkArrPoit( int[] arr ) {
+    public static void chkArrPoint(int[] arr ) {
         int sum_i = 0, sum_j = 0;
         boolean has_point = false;
         int i = 0, j=arr.length-1;
