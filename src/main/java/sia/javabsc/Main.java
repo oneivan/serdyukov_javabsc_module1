@@ -1,5 +1,7 @@
 package sia.javabsc;
 
+import java.util.Calendar;
+
 public class Main {
     public static void main(String[] args) {
 /*
@@ -38,9 +40,15 @@ e-mail: email
                 , new User("Данилов ","Кирилл ","Алексеевич",1953, "yrbci@gmail.com")
         };
         for (int i = 0; i < users.length; i++) {
-            if ( (2024 - users[i].getBDY()) > 40)
+            if ( (Calendar.getInstance().get(Calendar.YEAR) - users[i].getBDY()) > 40) //
                 users[i].getInfo();
         } // 9 of 10
-    }
 
+        Box bx = new Box("XXL", "BLACK");
+        bx.showInfo();
+        bx.setCollor("GREEN");
+        bx.showInfo();
+        bx.setCollor("YELLOW");
+        bx.showInfo();
+    }
 }
