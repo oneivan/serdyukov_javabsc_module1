@@ -44,10 +44,15 @@ e-mail: email
                 users[i].getInfo();
         } // 9 of 10
 
+        System.out.println("=====");
+
         Box bx = new Box("XXL", "BLACK");
         bx.showInfo();
+        System.out.println("-----");
         bx.setCollor("GREEN");
+        bx.putIn();
         bx.showInfo();
+        System.out.println("-----");
         bx.setCollor("YELLOW");
         bx.showInfo();
     }

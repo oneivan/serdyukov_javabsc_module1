@@ -1,4 +1,5 @@
 package sia.javabsc;
+
 /*
 Попробуйте реализовать класс по его описания:
     объекты класса Коробка должны иметь размеры и цвет.
@@ -12,28 +13,54 @@ package sia.javabsc;
     Выполнение методов должно сопровождаться выводом сообщений в консоль.
 */
 public class Box {
-    final String size; // M S L XL XXL...
-    String color; // Red,Green,Black ...
-    boolean empty;
+    private final String size; // M S L XL XXL...
+    private String color; // Red,Green,Black ...
+    private boolean empty;
 
-    public void actReport( String msg ) {
-        System.out.println("BOX REPORT: " + msg );
+    private void actReport(String msg) {
+        System.out.println("BOX REPORT: " + msg);
     }
-    String isEmptyMsg() { return (this.empty ? "пусто" : "заполнена"); }
-    boolean isEmpty() { return this.empty ; }
-    boolean putIn() { String msg = (this.empty ? "положили" : "не положили"); actReport(msg); this.empty = true; return this.empty ; }
-    boolean getOut() { String msg = (this.empty ? "нет вещей" : "выложили"); this.empty=true; actReport(msg); return this.empty ; }
-    void setCollor( String clr ) { String msg = "перекрасили в " + clr;  this.color = clr ; }
-    String getCollor() { String msg = "текущий цвет " + this.color; return this.color; }
 
-    public Box(String size , String clr ) {
+    String isEmptyMsg() {
+        return (this.empty ? "пусто" : "заполнена");
+    }
+
+    boolean isEmpty() {
+        return this.empty;
+    }
+
+    boolean putIn() {
+        String msg = (this.empty ?  "положили" : "не положили" );
+        actReport(msg);
+        this.empty = false;
+        return this.empty;
+    }
+
+    boolean getOut() {
+        String msg = (this.empty ? "нет вещей" : "выложили");
+        this.empty = true;
+        actReport(msg);
+        return this.empty;
+    }
+
+    void setCollor(String clr) {
+        actReport( "перекрасили в " + clr );
+        this.color = clr;
+    }
+
+    String getCollor() {
+        actReport( "текущий цвет " + this.color );
+        return this.color;
+    }
+
+    public Box(String size, String clr) {
         actReport("новый коробас");
         this.size = size;
         this.color = clr;
-        this.empty = false;
+        this.empty = true;
     }
 
     public void showInfo() {
-        actReport("Коробка цвета " + color + "\nРазмер - " + size + "\nзаполнена? " + isEmptyMsg());
+        actReport("INFO\n\tКоробка цвета " + color + "\n\tРазмер - " + size + "\n\tзаполнена? " + isEmptyMsg());
     }
 }
