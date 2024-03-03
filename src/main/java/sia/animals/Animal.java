@@ -1,6 +1,6 @@
 package sia.animals;
 
-public class Animal {
+public abstract class Animal {
 /*
     У каждого животного есть
         имя,
@@ -19,10 +19,23 @@ public class Animal {
         this.stamina = stamina;
     }
 
-    public int run( int distance ) {
-        int stm = this.stamina - distance /* x1 */;
-        return stm < 0 ? -1 : stm;
+    public void Info () {
+        System.out.printf(
+                "INFO:" + "\n\tName          = " + this.name
+                        + "\n\tSpeed of Run  = " + this.spdRun
+                        + "\n\tSpeed of Swim = " + this.spdSwim
+                        + "\n\tStamina       = " + this.stamina
+                + "\n"
+        );
     }
+    public float run( int distance ) {
+        setStamina(this.stamina - distance /* x1 */);
+        actionReport("бежим как можем");
+        return distance / spdRun;
+    }
+
+    abstract public float swim( int distance );
+
     public String getName() {
         return name;
     }
@@ -37,5 +50,13 @@ public class Animal {
 
     public int getStamina() {
         return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = this.stamina > 0 ? stamina : -1;
+    }
+
+    protected void actionReport( String msg ) {
+        System.out.println( this.name + " report : " + msg );
     }
 }

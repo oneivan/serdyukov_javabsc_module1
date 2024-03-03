@@ -1,5 +1,8 @@
 package sia.javabsc;
 
+import sia.animals.Dog;
+import sia.animals.Horse;
+
 public class Main {
     public static void main(String[] args) {
 /*
@@ -27,5 +30,18 @@ public class Main {
     При выполнении действий пишем сообщения в консоль.
     Добавляем метод info(), который выводит в консоль состояние животного.
 */
+        Dog dog = new Dog( "Ян", 10, 4, 100 );
+        dog.Info();
+        dog.run( 32 );
+        dog.Info();
+        dog.swim(11);
+        dog.Info();
+
+        Horse horse = new Horse("Руке", 30, 6, 100 );
+        horse.Info();
+        horse.swim( 10 );
+        horse.Info();
+        horse.run(53);
+        horse.Info();
     }
 }
