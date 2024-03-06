@@ -2,6 +2,7 @@ package sia.javabsc;
 
 import sia.animals.Dog;
 import sia.animals.Horse;
+import sia.animals.Cat;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,5 +44,12 @@ public class Main {
         horse.Info();
         horse.run(53);
         horse.Info();
+
+        Cat cat = new Cat("Ганс", 3, 100 );
+        cat.Info();
+        cat.swim( 100 );
+        cat.Info();
+        cat.run(8);
+        cat.Info();
     }
 }
