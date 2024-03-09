@@ -2,6 +2,7 @@ package sia.javabsc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /*
@@ -73,8 +74,13 @@ public class Main {
         ArrayList<String> nm = getStudName( arr );
         System.out.println( Arrays.toString(nm.toArray()) );
 
-        ArrayList<Student> olders = getStudByAge( arr,20 );
-        System.out.println( "Students with age more than 20 : " + olders);
+        ArrayList<Student> olders = getStudByAge( arr,18 );
+        System.out.println( "Students возраст больше данного (18) : " + olders);
+
+        ArrayList<Student> avgolders = getAvgSuds( arr );
+        System.out.println("Students у кого возраст больше среднего : " + avgolders );
+
+        System.out.println( getMinAgeStudent(arr) );
     }
 
     protected ArrayList<String> getStudName( ArrayList<Student> studs ) {
@@ -85,7 +91,7 @@ public class Main {
         return arr;
     }
 
-    protected  ArrayList<Student> getStudByAge( ArrayList< Student > studs , int minage ) {
+    protected  ArrayList<Student> getStudByAge( ArrayList< Student > studs , float minage ) {
         ArrayList<Student> arr = new ArrayList<Student>();
         for (int i = 0; i < studs.size(); i++) {
             if (studs.get(i).getAge() > minage) {
@@ -93,5 +99,28 @@ public class Main {
             }
         }
         return arr;
+    }
+
+    protected float getStudAvgAge( ArrayList<Student> studs ) {
+        int sum = 0;
+        for (Student stud : studs) {
+            sum += stud.getAge();
+        }
+        float avg = sum / studs.size();
+        System.out.println("средний возраст : " + avg );
+        return avg;
+    }
+    protected ArrayList<Student> getAvgSuds( ArrayList<Student> arr ){
+        return getStudByAge(arr ,  getStudAvgAge(arr));
+    }
+
+    protected Student getMinAgeStudent( ArrayList<Student> studs ) {
+        studs.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return  o1.getAge() - o2.getAge();
+            }
+        });
+        return studs.get(0);
     }
 }
