@@ -29,36 +29,30 @@ public class Main {
         for (int i = 0; i < RIGHTSZ; i++) {
             System.out.println("arr = " + Arrays.toString(arr[i]));
         }
-/*
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-SUM = 5144
-*/
-
-//        int[][] arrWrongSZ = new int[4][5];
-//        sum = mtdTest(arrWrongSZ, "");
-/*
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-Exception in thread "main" sia.javabsc.AppArraySizeException: Размер массива не верный.
-	at sia.javabsc.Main.mtdTest(Main.java:52)
-	at sia.javabsc.Main.main(Main.java:34)
-*/
-
+        try {
+            int[][] arrWrongSZ = new int[4][5];
+            sum = mtdTest(arrWrongSZ, "");
+        } catch (AppArraySizeException ex) {
+            System.out.println( "AppArraySizeException: " + ex.getMessage());
+        }
         int[][] arrErrParse = new int[4][4];
-        sum = mtdTest(arrErrParse, "x");
+        try {
+            sum = mtdTest(arrErrParse, "x");
+        } catch ( AppArrayDataExeption ex ) {
+//            ex.printStackTrace();
+            System.out.println( "AppArrayDataExeption: " + ex.getMessage());
+        }
 /*
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-arr = [320, 321, 322, 323]
-Exception in thread "main" sia.javabsc.AppArrayDataExeption: Значения в строке не INT.
-	at sia.javabsc.Main.mtdTest(Main.java:64)
-	at sia.javabsc.Main.main(Main.java:45)
+    arr = [320, 321, 322, 323]
+    arr = [320, 321, 322, 323]
+    arr = [320, 321, 322, 323]
+    arr = [320, 321, 322, 323]
+    AppArraySizeException: Размер массива не верный.
+    i =0; j = 0
+    AppArrayDataExeption: Значения в строке не INT в элементе i = 0 и j = 0
+    SUM = 5144
+
+    Process finished with exit code 0
 */
         System.out.println("SUM = " + sum );
     }
