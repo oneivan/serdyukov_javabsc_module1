@@ -1,9 +1,6 @@
 package sia.javabsc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 /*
 Описание/Пошаговая инструкция выполнения домашнего задания:
@@ -23,102 +20,105 @@ arrIncc - Реализуйте метод, принимающий в качес�
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
-        ArrayList<Integer> arr = main.arrFill(11,33);
+        List<Integer> arr = main.arrFill(11, 33);
         System.out.println(arr);
-        main.arrInit( arr , -22 );
+        main.arrInit(arr, -22);
         System.out.println(arr);
-        main.arrIncc( arr, -8 );
+        main.arrIncc(arr, -8);
         System.out.println(arr);
 
         main.testClassStudent();
     }
 
-    protected ArrayList<Integer> arrFill( int mmin, int mmax ) {
+    protected List<Integer> arrFill(int mmin, int mmax) {
         if (mmin > mmax) return null;
-        int sz = mmax-mmin;
-        ArrayList<Integer> arr = new ArrayList<Integer>( sz );
+        int sz = mmax - mmin;
+        ArrayList<Integer> arr = new ArrayList<Integer>(sz);
         for (int i = 0; i < sz; i++) {
-            arr.add( mmin++ );
+            arr.add(mmin++);
         }
         return arr;
     }
-    protected int arrSumm( ArrayList<Integer> arr ) {
+
+    protected int arrSumm(List<Integer> arr) {
         //  Реализуйте метод, принимающий в качестве аргумента список целых чисел, суммирующий все элементы, значение которых больше 5, и возвращающий сумму;
         int summ = 0;
         for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i) > 5 ) {
+            if (arr.get(i) > 5) {
                 summ += arr.get(i);
             }
         }
         return summ;
     }
-    protected void arrInit( ArrayList<Integer> arr, int a ) {
+
+    protected void arrInit(List<Integer> arr, int a) {
         for (int i = 0; i < arr.size(); i++) {
             arr.set(i, a);
         }
     }
 
-    protected void arrIncc ( ArrayList<Integer> arr , int inc ) {
+    protected void arrIncc(List<Integer> arr, int inc) {
         for (int i = 0; i < arr.size(); i++) {
-            arr.set(i, arr.get(i) + inc );
+            arr.set(i, arr.get(i) + inc);
         }
     }
 
     protected void testClassStudent() {
-        ArrayList<Student> arr = new ArrayList<>( Arrays.asList(
-                new Student("Ash",18),
-                new Student("Joe",28),
-                new Student("Sam",22),
-                new Student("Ann",19)
+        List<Student> arr = new ArrayList<>(Arrays.asList(
+                new Student("Ash", 18),
+                new Student("Joe", 28),
+                new Student("Sam", 22),
+                new Student("Ann", 19)
         ));
-        ArrayList<String> nm = getStudName( arr );
-        System.out.println( Arrays.toString(nm.toArray()) );
+        List<String> nm = getStudName(arr);
+        System.out.println(Arrays.toString(nm.toArray()));
 
-        ArrayList<Student> olders = getStudByAge( arr,18 );
-        System.out.println( "Students возраст больше данного (18) : " + olders);
+        List<Student> olders = getStudByAge(arr, 18);
+        System.out.println("Students возраст больше данного (18) : " + olders);
 
-        ArrayList<Student> avgolders = getAvgSuds( arr );
-        System.out.println("Students у кого возраст больше среднего : " + avgolders );
+        List<Student> avgolders = getAvgSuds(arr);
+        System.out.println("Students у кого возраст больше среднего : " + avgolders);
 
-        System.out.println( getMinAgeStudent(arr) );
+        System.out.println(getMinAgeStudent(arr));
     }
 
-    protected ArrayList<String> getStudName( ArrayList<Student> studs ) {
-        ArrayList<String> arr = new ArrayList<String>(studs.size());
-        for (int i = 0; i < studs.size(); i++) {
-            arr.add(i, studs.get(i).getName() );
+    protected List<String> getStudName(List<Student> studs) {
+        List<String> arr = new ArrayList<String>(studs.size());
+        for( Student stud : studs ){
+            arr.add(stud.getName());
         }
         return arr;
     }
 
-    protected  ArrayList<Student> getStudByAge( ArrayList< Student > studs , float minage ) {
-        ArrayList<Student> arr = new ArrayList<Student>();
+    protected List<Student> getStudByAge(List<Student> studs, float minage) {
+        List<Student> arr = new ArrayList<Student>();
         for (int i = 0; i < studs.size(); i++) {
             if (studs.get(i).getAge() > minage) {
-                arr.add( studs.get(i) );
+                arr.add(studs.get(i));
             }
         }
         return arr;
     }
 
-    protected float getStudAvgAge( ArrayList<Student> studs ) {
+    protected float getStudAvgAge(List<Student> studs) {
         int sum = 0;
         for (Student stud : studs) {
             sum += stud.getAge();
         }
         float avg = sum / studs.size();
-        System.out.println("средний возраст : " + avg );
+        System.out.println("средний возраст : " + avg);
         return avg;
     }
-    protected ArrayList<Student> getAvgSuds( ArrayList<Student> arr ){
-        return getStudByAge(arr ,  getStudAvgAge(arr));
+
+    protected List<Student> getAvgSuds(List<Student> arr) {
+        return getStudByAge(arr, getStudAvgAge(arr));
     }
 
-    protected Student getMinAgeStudent( ArrayList<Student> studs ) {
+    protected Student getMinAgeStudent(List<Student> studs) {
         studs.sort(new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return  o1.getAge() - o2.getAge();
+                return o1.getAge() - o2.getAge();
             }
         });
         return studs.get(0);
